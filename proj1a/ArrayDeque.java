@@ -46,14 +46,18 @@ public class ArrayDeque<T> {
     }
 
     public void addFirst(T item) {
-        if (size == length - 1) grow();
+        if (size == length - 1) {
+            grow();
+        }
         front = (front - 1) % length;
         array[front] = item;
         size++;
     }
 
     public void addLast(T item) {
-        if (size == length - 1) grow();
+        if (size == length - 1) {
+            grow();
+        }
         array[rear] = item;
         rear = (rear + 1) % length;
         size++;
@@ -67,7 +71,7 @@ public class ArrayDeque<T> {
         return size;
     }
 
-    public void printDeque(){
+    public void printDeque() {
         int index = front;
         while (index != rear) {
             System.out.print(array[index] + " ");
@@ -76,8 +80,12 @@ public class ArrayDeque<T> {
     }
 
     public T removeFirst() {
-        if (size == 0) return null;
-        if (length >= 16 && length / size >= 4) shrink();
+        if (size == 0) {
+            return null;
+        }
+        if (length >= 16 && length / size >= 4) {
+            shrink();
+        }
         T ret = array[front];
         front = (front + 1) % length;
         size--;
@@ -85,17 +93,21 @@ public class ArrayDeque<T> {
     }
 
     public T removeLast() {
-        if (size == 0) return null;
-        if (length >= 16 && length / size >= 4) shrink();
+        if (size == 0) {
+            return null;
+        }
+        if (length >= 16 && length / size >= 4) {
+            shrink();
+        }
         rear = (rear - 1) % length;
         size--;
         return array[rear];
     }
 
-    public T get(int index){
-        if (index >= size) return null;
-        return array[(front + index) % size];
+    public T get(int index) {
+        if (index >= size) {
+            return null;
+        }
+        return array[(front + index) % length];
     }
-
-
 }
