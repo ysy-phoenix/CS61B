@@ -79,7 +79,9 @@ public class LinkedListDeque<T> {
     }
 
     public T get(int index) {
-        if (index >= size) return null;
+        if (index >= size) {
+            return null;
+        }
         Node ptr = sentinel.next;
         for (int i = 0; i < index; i++) {
             ptr = ptr.next;

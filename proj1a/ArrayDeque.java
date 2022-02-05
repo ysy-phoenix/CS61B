@@ -99,7 +99,7 @@ public class ArrayDeque<T> {
         if (length >= 16 && length / size >= 4) {
             shrink();
         }
-        rear = (rear - 1) % length;
+        rear = (rear - 1 + length) % length;
         size--;
         return array[rear];
     }
