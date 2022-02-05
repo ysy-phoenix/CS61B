@@ -49,7 +49,7 @@ public class ArrayDeque<T> {
         if (size == length - 1) {
             grow();
         }
-        front = (front - 1) % length;
+        front = (front - 1 + length) % length;
         array[front] = item;
         size++;
     }
