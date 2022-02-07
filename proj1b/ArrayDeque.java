@@ -47,15 +47,19 @@ public class ArrayDeque<T> implements Deque<T> {
 
     @Override
     public void addFirst(T item) {
-        if (size == length - 1) grow();
-        front = (front - 1) % length;
+        if (size == length - 1) {
+            grow();
+        }
+        front = (front - 1 + length) % length;
         array[front] = item;
         size++;
     }
 
     @Override
     public void addLast(T item) {
-        if (size == length - 1) grow();
+        if (size == length - 1) {
+            grow();
+        }
         array[rear] = item;
         rear = (rear + 1) % length;
         size++;
@@ -82,8 +86,12 @@ public class ArrayDeque<T> implements Deque<T> {
 
     @Override
     public T removeFirst() {
-        if (size == 0) return null;
-        if (length >= 16 && length / size >= 4) shrink();
+        if (size == 0) {
+            return null;
+        }
+        if (length >= 16 && length / size >= 4) {
+            shrink();
+        }
         T ret = array[front];
         front = (front + 1) % length;
         size--;
@@ -92,17 +100,23 @@ public class ArrayDeque<T> implements Deque<T> {
 
     @Override
     public T removeLast() {
-        if (size == 0) return null;
-        if (length >= 16 && length / size >= 4) shrink();
-        rear = (rear - 1) % length;
+        if (size == 0) {
+            return null;
+        }
+        if (length >= 16 && length / size >= 4) {
+            shrink();
+        }
+        rear = (rear - 1 + length) % length;
         size--;
         return array[rear];
     }
 
     @Override
     public T get(int index) {
-        if (index >= size) return null;
-        return array[(front + index) % size];
+        if (index >= size) {
+            return null;
+        }
+        return array[(front + index) % length];
     }
 
 

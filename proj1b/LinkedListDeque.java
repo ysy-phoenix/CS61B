@@ -63,7 +63,9 @@ public class LinkedListDeque<T> implements Deque<T> {
 
     @Override
     public T removeFirst() {
-        if (size == 0) return null;
+        if (size == 0) {
+            return null;
+        }
         T ret = sentinel.next.item;
         sentinel.next.next.prev = sentinel;
         sentinel.next = sentinel.next.next;
@@ -73,7 +75,9 @@ public class LinkedListDeque<T> implements Deque<T> {
 
     @Override
     public T removeLast() {
-        if (size == 0) return null;
+        if (size == 0) {
+            return null;
+        }
         T ret = sentinel.prev.item;
         sentinel.prev.prev.next = sentinel;
         sentinel.prev = sentinel.prev.prev;
@@ -83,21 +87,29 @@ public class LinkedListDeque<T> implements Deque<T> {
 
     @Override
     public T get(int index) {
-        if (index >= size) return null;
+        if (index >= size) {
+            return null;
+        }
         Node ptr = sentinel.next;
-        for (int i = 0; i < index; i++)
+        for (int i = 0; i < index; i++) {
             ptr = ptr.next;
+        }
         return ptr.item;
     }
 
     private T getRecursiveHelp(Node node, int index) {
-        if (index == 0) return node.item;
-        else return getRecursiveHelp(node.next, index - 1);
+        if (index == 0) {
+            return node.item;
+        } else {
+            return getRecursiveHelp(node.next, index - 1);
+        }
     }
 
     public T getRecursive(int index) {
-        if (index >= size) return null;
-        return getRecursiveHelp(sentinel.next, index - 1);
+        if (index >= size || index < 0) {
+            return null;
+        }
+        return getRecursiveHelp(sentinel.next, index);
     }
 
 }
