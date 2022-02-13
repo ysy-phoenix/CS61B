@@ -13,7 +13,7 @@ public class ArrayDeque<T> {
         rear = 4;
     }
 
-    private void grow() {
+    private void upsize() {
         int newLength = length * 2;
         T[] newArray = (T[]) new Object[newLength];
         int ptr1 = front;
@@ -29,7 +29,7 @@ public class ArrayDeque<T> {
         length = newLength;
     }
 
-    private void shrink() {
+    private void downsize() {
         int newLength = length / 2;
         T[] newArray = (T[]) new Object[newLength];
         int ptr1 = front;
@@ -47,7 +47,7 @@ public class ArrayDeque<T> {
 
     public void addFirst(T item) {
         if (size == length - 1) {
-            grow();
+            upsize();
         }
         front = (front - 1 + length) % length;
         array[front] = item;
@@ -56,7 +56,7 @@ public class ArrayDeque<T> {
 
     public void addLast(T item) {
         if (size == length - 1) {
-            grow();
+            upsize();
         }
         array[rear] = item;
         rear = (rear + 1) % length;
@@ -84,7 +84,7 @@ public class ArrayDeque<T> {
             return null;
         }
         if (length >= 16 && length / size >= 4) {
-            shrink();
+            downsize();
         }
         T ret = array[front];
         front = (front + 1) % length;
@@ -97,7 +97,7 @@ public class ArrayDeque<T> {
             return null;
         }
         if (length >= 16 && length / size >= 4) {
-            shrink();
+            downsize();
         }
         rear = (rear - 1 + length) % length;
         size--;
