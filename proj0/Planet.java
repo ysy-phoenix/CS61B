@@ -1,9 +1,9 @@
 public class Planet {
-    public double xxPos;
-    public double yyPos;
-    public double xxVel;
-    public double yyVel;
-    public double mass;
+    public double xxPos; // current x position
+    public double yyPos; // current y position
+    public double xxVel; // current velocity in the x direction
+    public double yyVel; // current velocity in the y direction
+    public double mass;  
     public String imgFileName;
     private static final double G = 6.67e-11;
 
@@ -50,7 +50,9 @@ public class Planet {
     public double calcNetForceExertedByX(Planet[] allPlanets) {
         double forceExertedByX = 0.0;
         for (Planet planet : allPlanets) {
-            if (this.equals(planet)) continue;
+            if (this.equals(planet)) {
+            	continue;
+            }
             forceExertedByX += calcForceExertedByX(planet);
         }
         return forceExertedByX;
@@ -59,7 +61,9 @@ public class Planet {
     public double calcNetForceExertedByY(Planet[] allPlanets) {
         double forceExertedByY = 0.0;
         for (Planet planet : allPlanets) {
-            if (this.equals(planet)) continue;
+            if (this.equals(planet)) {
+            	continue;
+            }
             forceExertedByY += calcForceExertedByY(planet);
         }
         return forceExertedByY;
